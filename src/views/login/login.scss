@@ -1,0 +1,77 @@
+.signin-container{
+    height: 100%;
+    width: 100%;
+    background: #f9f9f9;
+}
+.signin-form{
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 15px;
+    .header-context{
+        margin-top: 40px;
+        width: 100%;
+        text-align: center;
+        img{
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            margin: 0 auto;
+        }
+    }
+    .mb-1{
+        margin-top: 20px;
+    }
+    .rememberUser{
+        margin-top: 10px;
+    }
+    .signin-fotter{
+        color: rgba(0,0,0,.45);
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+.signin-submit{
+    margin-top: 10px;
+}
+.JTbtn{
+    display: inline-block;
+    padding: .375rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    border: .0625rem solid transparent;
+    border-radius: .25rem;
+}
+.JTbtn-primary{
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+.JTbtn-primary.active.focus,
+.JTbtn-primary.active:focus,
+.JTbtn-primary.active:hover,
+.JTbtn-primary:active.focus,
+.JTbtn-primary:active:focus,
+.JTbtn-primary:active:hover{
+    color: #fff;
+    background-color: #014682;
+    border-color: #01315a;
+}
+.JTbtn-lg{
+    padding: .75rem 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.333333;
+    border-radius: .3rem;
+}
+.JTbtn-block{
+    display: block;
+    width: 100%;
+}

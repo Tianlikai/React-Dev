@@ -1,0 +1,23 @@
+.JTipt{
+    margin: 0px;
+    width: 100%;
+    max-width: 380px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    border: .0625rem solid #ccc;
+    border-radius: .25rem;
+}
+.error{
+    border-color: red;
+}
+.withHint{
+    color: red;
+    font-size: .875rem;
+}
+.JTipt.error:focus,
+.JTipt.error:active{
+    outline-color: red;
+}
