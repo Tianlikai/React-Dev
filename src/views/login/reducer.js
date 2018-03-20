@@ -8,7 +8,6 @@ function loginReducer(state = initState.userData, action) {
             return state
         }
         case ActionTypes.LOGIN.SUCCESS: {
-            debugger
             return merge({}, state, action.response.result)
         }
         case ActionTypes.LOGIN.FAILURE: {
