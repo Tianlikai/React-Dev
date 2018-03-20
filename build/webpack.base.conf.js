@@ -1,9 +1,9 @@
 const path = require('path'),
-      webpack = require('webpack'),
-      NyanProgressPlugin = require('nyan-progress-webpack-plugin')
+  webpack = require('webpack'),
+  NyanProgressPlugin = require('nyan-progress-webpack-plugin')
 
 let env = process.env.NODE_ENV.trim(), // 当前环境
-    commonPath = require('./index') // 项目路径
+  commonPath = require('./index') // 项目路径
 
 module.exports = {
   commonPath: commonPath,
@@ -38,6 +38,13 @@ module.exports = {
           cacheDirectory: true,
           plugins: [
             'transform-runtime',
+            [
+              "import",
+              {
+                "libraryName": "antd",
+                "style": true
+              }
+            ],
             'transform-decorators-legacy'
           ],
           presets: ['es2015', 'react', 'stage-0'],
