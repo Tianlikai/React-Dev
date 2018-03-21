@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { history } from '../redux/store/configureStore'
-import { Router, Route, IndexRoute } from 'react-router'
+import { history } from '../redux/store'
+import { Router, Route, IndexRoute, Redirect } from 'react-router'
 // import { injectReducer } from '../redux/reducers/index'
 
-// Login
+// 登录
 const Login = (location, cb) => {
     require.ensure([], require => {
         // 立即注入 Reducer
@@ -12,20 +12,26 @@ const Login = (location, cb) => {
         cb(null, require('../views/login').default)
     }, 'Login')
 }
-// Main
+// dashboard
 const Main = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../views/main').default)
     }, 'Main')
 }
-/* 管理员平台  end */
+// Exception
+const Exception = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../views/exception').default)
+    }, 'Exception')
+}
 const Routes = (
     <Router history={history}>
         <Route path="/">
             <IndexRoute getComponent={Login} />
             <Route getComponent={Login} path="login"></Route>
-            <Route getComponent={Main} path="main">
-            </Route>
+            <Route getComponent={Main} path="main"></Route>
+            <Route getComponent={Exception} path="exception/:status"></Route>
+            <Redirect from='*' to='exception/404' />
         </Route>
     </Router>
 )
