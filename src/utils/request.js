@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch'
-import { notification } from 'antd'
+// import { notification } from 'antd'
 // import { routerRedux } from 'dva/router' // history原本是routerRedux
-import store, { history } from '../redux/store/configureStore'
+import { navigate } from '../views/login/action'
+import store from '../redux/store'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -18,17 +19,19 @@ const codeMessage = {
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。',
+  504: '网关超时。'
 }
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response
   }
   const errortext = codeMessage[response.status] || response.statusText
-  notification.error({
-    message: `请求错误 ${response.status}: ${response.url}`,
-    description: errortext,
-  })
+  console.log(`请求错误 ${response.status}: ${response.url}`)
+  console.log(errortext)
+  // notification.error({
+  //   message: `请求错误 ${response.status}: ${response.url}`,
+  //   description: errortext,
+  // })
   const error = new Error(errortext)
   error.name = response.status
   error.response = response
@@ -43,8 +46,9 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
+  
   const defaultOptions = {
-    credentials: 'include',
+    credentials: 'include'
   }
   const newOptions = { ...defaultOptions, ...options }
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
@@ -52,7 +56,7 @@ export default function request(url, options) {
       newOptions.headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json; charset=utf-8',
-        ...newOptions.headers,
+        ...newOptions.headers
       }
       newOptions.body = JSON.stringify(newOptions.body)
     } else {
@@ -60,7 +64,7 @@ export default function request(url, options) {
       newOptions.headers = {
         Accept: 'application/json',
         'Content-Type': 'multipart/form-data',
-        ...newOptions.headers,
+        ...newOptions.headers
       }
     }
   }
@@ -84,18 +88,17 @@ export default function request(url, options) {
         return
       }
       if (status === 403) {
-        // dispatch(history.push('/exception/403'))
+        dispatch(navigate('/exception/403'))
         alert(status)
         return
       }
       if (status <= 504 && status >= 500) {
-        // dispatch(history.push('/exception/500'))
+        dispatch(navigate('/exception/500'))
         alert(status)
         return
       }
       if (status >= 404 && status < 422) {
-        alert(status)
-        // dispatch(history.push('/exception/404'))
+        dispatch(navigate('/exception/404'))
       }
     })
 }

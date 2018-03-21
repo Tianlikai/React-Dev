@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import Form from '../../components/form/Form'
 import FormItem from '../../components/form/FormItem'
 import Input from '../../components/input/Input'
-import './login.scss'
 import logo from '../../assets/img/favicon.png'
-import { loginAcion, navigate } from './action'
+import { loginAcion } from './action'
+import './login.scss'
 
 class Login extends Component {
     constructor(props) {
@@ -70,11 +70,6 @@ class Login extends Component {
         // }
     }
     render() {
-        const { user: userInfo, navigate } = this.props
-        if (userInfo) {
-            debugger
-            navigate('/main')
-        }
         let {
             formMessage,
             filed: {
@@ -160,6 +155,5 @@ function mapStateToProps(state, props) {
 }
 
 export default connect(mapStateToProps, {
-    loginAcion,
-    navigate
+    loginAcion
 })(Login) 
