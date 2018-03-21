@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import store from '../store/configureStore'
+import store from '../store'
 import loginReducer from '../../views/login/reducer'
 
 // ================================
@@ -25,7 +25,6 @@ export function createRootReducer() {
     ...asyncReducers
   })
 }
-
 
 /**
  * 按需加载时，立即注入对应的 Reducer
