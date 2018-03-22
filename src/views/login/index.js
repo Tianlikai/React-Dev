@@ -4,7 +4,7 @@ import Form from '../../components/form/Form'
 import FormItem from '../../components/form/FormItem'
 import Input from '../../components/input/Input'
 import logo from '../../assets/img/favicon.png'
-import { loginAcion } from './action'
+import { loginAcion } from '../../model/login'
 import './login.scss'
 
 class Login extends Component {
@@ -23,6 +23,7 @@ class Login extends Component {
         }
     }
     componentWillMount() {
+        document.title = `登录 React Wanted`
         // console.info('[Navbar] 初始化：检查用户是否已经登录')
         // console.info('[TIPS] 由于有Redux Logger，故之后就不手动打印动作了')
         // this.props.checkLogin()
