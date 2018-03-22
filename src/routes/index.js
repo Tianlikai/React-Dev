@@ -12,13 +12,13 @@ const Login = (location, cb) => {
         cb(null, require('../views/login').default)
     }, 'Login')
 }
-// dashboard
+// 主页面
 const Main = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../views/main').default)
     }, 'Main')
 }
-// Exception
+// 错误界面导航
 const Exception = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../views/exception').default)

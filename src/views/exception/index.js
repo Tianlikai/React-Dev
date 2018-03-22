@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import exceptions from './exceptions'
+import exceptions from './constants'
 import './theme.scss'
 
 class Exception extends Component {

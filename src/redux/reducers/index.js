@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import store from '../store'
-import loginReducer from '../../views/login/reducer'
+import loginReducer from '../../model/login'
 
 // ================================
 // 同步的 Reducers（即应用初始化所必需的）

@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 // import { notification } from 'antd'
 // import { routerRedux } from 'dva/router' // history原本是routerRedux
-import { navigate } from '../views/login/action'
+import { navigate } from '../model/route'
 import store from '../redux/store'
 
 const codeMessage = {
