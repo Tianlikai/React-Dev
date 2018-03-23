@@ -1,234 +1,161 @@
-# React 示例项目 · 简易留言板 + 待办事项
+# React Dev redux
 
-> ## *2017.7 升级版预览：[`react-scaffold`](https://github.com/kenberkeley/react-scaffold)，敬请期待！*
+这款入门套件旨在让您使用一系列极好的前端技术来启动和运行。
 
-![应用截图](./screenshot.png)
-
-> ###写在前面  
-> 一直以来，我都相当纳闷：为什么 React 的那些 starter kit 都构建得那么恶心？  
-> 能不能像 [Vue Cli][vue-cli] 生成的[项目架构][vue-cli-template]般优雅？说干就干，本项目就改自 [Vue Demo][vue-demo]
-> 
-> ### 更新
-> 2016/8/28 &nbsp; 引入 `cross-env` 解决跨平台问题，新增优化项 `DedupePlugin`  
-> 2016/8/29 &nbsp; 重命名 `makeContainer / makeReducer.js => createContainer / createReducer.js`  
-> 2016/9/10 &nbsp; 重构 `src/redux/`  
-> 2016/10/15 &nbsp; 同步 Vue Demo 的改动  
-> 2016/10/16 &nbsp; 改进：仅在开发模式下引入 React Hot Loader
+该项目的主要目标是为构建现代Web应用提供稳定的基础。 它的目的不是规定你的项目结构或演示一个`完整的应用程序，而是提供一组工具，旨在使前端开发更健壮，更简单，最重要的是，更有趣。 查看下面的完整功能列表！
 
 ## 目录
-#### &sect; [技术栈](#features)
-#### &sect; [快速开始](#getting-started)
-  * [安装](#installation)
-  * [启动](#start)
+1. [要求](#要求)
+1. [开始](#开始)
+1. [启动项目](#启动项目)
+1. [项目结构](#项目结构)
+1. [项目特点](#项目特点)
+1. [redux-saga](#redux-saga)
+1. [代码规范](#代码规范)
+1. [mock](#mock)
+1. [测试](#测试)
+1. [开发](#开发)
+1. [部署](#部署)
+1. [服务器端渲染](#服务器端渲染)
+1. [性能优化](#性能优化)
+1. [参考](#参考)
 
-#### &sect; [项目架构](#architecture)
-  * [目录结构](#tree)
-  * [特色](#character)
+## 要求
+* node `^7.10.0`
+* npm `^4.2.0`
 
-#### &sect; [开发](#development)
-  * [Webpack 配置](#webpack-configure)
-  * [规范](#standard)
-  * [性能](#performance)
-  
-#### &sect; [测试](#testing)  
-#### &sect; [部署](#deployment)
-#### &sect; [参考](#reference)
+## 开始
 
-****
+在确认您的环境符合上述[要求](#要求)后，您可以通过执行以下操作来基于`React Dev`创建一个新项目：
 
-## <a name="features">&sect; 技术栈</a>
-> 详情可参阅 `package.json`
+```bash
+$ git clone 
+https://github.com/Tianlikai/React-Dev.git <my-project-name>
+$ cd <my-project-name>
+```
 
-* React 15.3.0
-* Redux
-* React Router
-* Ajax 请求库（Superagent / jQuery-Ajax / ...）
-* Webpack
-* ES6 + Babel
-* jQuery + BootStrap (UI)
+完成后，安装项目依赖项。 建议您使用Yarn进行确定性依赖管理，但cnpm install就足够了。
 
-***
+```bash
+$ cnpm install  # Install project dependencies (or `yarn add`)
+```
 
-## <a name="getting-started">&sect; 快速开始</a>
-在开始前，希望您已通读如下资料
+## 启动项目
 
-* [React 文档][react-doc]
-* [Redux 文档][redux-doc]（看完后懵逼的请转看 [Redux 莞式教程][simple-tutorial]）
-* [React Router 文档][react-router-doc]
+完成[开始](#开始)步骤后，即可开始项目！
 
-同时您还需要熟悉 ES6。例如，请把如下代码  
-`const foo = ({ hello: { world: bar } }) => ({ bar })`  
-转译成 ES5（答案请自行到 [Babel REPL][babel-repl] 在线编译验证）
+```bash
+$ npm start  # Start the development server (or `yarn start`)
+```
 
-### <a name="installation">⊙ 安装</a>
-> 推荐升级到 node 5.x/6.x + npm 3.x 环境，**强烈推荐**使用 [`cnpm`](https://github.com/cnpm/cnpm) 安装依赖或手动   
-> 切换到淘宝 npm 源：`npm set registry https://registry.npm.taobao.org/`  
-> （经测试，`cnpm` 对于 `node-sass` 等问题多多的 Package 拥有秒杀能力）
+在开发过程中，您还可以使用其他脚本：
 
-本示例项目需要结合 [简易留言板 RESTful API](https://github.com/kenberkeley/msg-board-api)  
-模拟前后端分离开发（还为了与 [Vue Demo][vue-demo] 共用）  
-请分别 `git clone`，打开**两个**命令窗口（ Windows 下推荐使用 `Cygwin / Git Bash`）**分别**切换到两者的目录下  
-分别敲下 `npm install` 安装依赖（为避免 Windows 下 npm 2.x 的软链接问题，可加上 `--no-bin-link` 完全解构所有依赖）
+|`npm <script>`    |Description|
+|-------------------|-----------|
+|`start`            |Serves your app at `localhost:9000`|
+|`build`            |Builds the application to ./dist|
 
-### <a name="start">⊙ 启动</a>
-先后在 `msg-board-api`、`react-demo` 的命令窗口下，敲下 `npm start`  
-如无意外，默认浏览器就会自动打开 `localhost:9090`，您立即可以看到效果  
-若浏览器没有自动弹出，则请自行手动访问  
+## 项目结构
 
-> P.S. 如果您还不清楚如何安装与启动，请看这个 [issue][how-to-start]
+本项目目录结构综合了按功能组织和mvc结构.
 
-***
-
-## <a name="architecture">&sect; 项目架构</a>
-### <a name="tree">⊙ 目录结构</a>
 ```
 .
-├─ build/            # Webpack 配置目录
-├─ dist/             # build 生成的生产环境下的项目
-├─ src/              # 源码目录（开发都在这里进行）
-│   ├─ assets/         # 放置需要经由 Webpack 处理的静态文件
-│   ├─ components/     # 组件（COMPONENT）
-│   ├─ redux/          # Redux 一箩筐
-│   │   ├─ actions/      # （ACTION）
-│   │   ├─ reducers/     # （REDUCER）
-│   │   ├─ store/        # （STORE）
-│   ├── routes/        # 路由（ROUTE）
-│   ├── services/      # 服务（SERVICE，用于统一管理 XHR 请求，这是从 Vue Demo 中直接复制过来的）
-│   ├── utils/         # 工具库（UTIL）
-│   │   ├─ HoC/          # 高阶组件（HOC，全称 Higher Order Component）
-│   │   ├─ mixins/       # 混合（MIXIN）
-│   ├── views/         # 路由视图基页（VIEW）
-│   │   ├─ layout/       # 全局布局
-│   ├── app.js         # 启动文件
-│   ├── index.html     # 静态基页
-├── static/          # 放置无需经由 Webpack 处理的静态文件
-├── .babelrc         # Babel 转码配置
-├── .eslintignore    # （配置）ESLint 检查中需忽略的文件（夹）
-├── .eslintrc        # ESLint 配置
-├── .gitignore       # （配置）需被 Git 忽略的文件（夹）
-├── package.json     # （这个就不用多解释了吧）
+├── build                    # webpack 打包配置
+│   ├── dev                  # 启动开发服务
+│   ├── index                # 打包目录配置
+│   ├── prod                 # 启动发布服务
+│   ├── webpack.base.conf    # webpack基础配置
+│   ├── webpack.dev.conf     # 开发环境 区别配制
+│   └── webpack.prod.conf    # 发布环境 区别配置
+├── src                      # 应用程序源代码
+├── ├── assets               # 样式，图片
+│   ├── components           # 可重用组件
+│   ├── model                # 按功能组织模块 每个模块包含action、redux-saga、reducer
+│   │   ├── login            # 处理login相关业务
+│   │   └── route            # 处理路由相关业务
+│   ├── redux                # redux 全局文件
+│   │   ├── action           # 目录下包含action全局文件
+│   │   ├── reducers         # reducer全局文件，合并reducer、按需插入reducer
+│   │   └── store            # store全局文件
+|   |       ├── enhancers    # Store 增强器 Redux DevTools
+|   |       ├── index        # export 增强、结合redux-saga的store
+|   |       ├── initState    # 项目状态结构
+|   |       ├── middle...    # 中间件打印日志
+|   |       └── syncHi...    # store、route同步
+│   ├── routes               # 项目路由
+│   ├── sagas                # rootSaga 监听所有异步请求
+│   ├── services             # 定义所有异步请求 可以按功能组织
+│   ├── utils.js             # 工具函数 
+│   │   └── request          # 封装fetch 
+│   ├── views.js             # 视图文件 每个文件对应一个应用模块
+│   │   ├── login            # login页面
+│   │   └── main             # main页面
+│   ├── app.js               # 项目入口
+│   └── index.html               # Main HTML page container for app
+└── static                   # 静态文件
 ```
 
-在这里您可能会问：怎么没有 `containers/` 目录？  
-在本项目中，木偶组件与智能组件最大的差别在于：  
-前者的状态是通过父组件传入获得，而后者是直接**连接**到 `state` 获得  
-亦即：若一个木偶组件直接**连接**到 `state`，那么它就是一个所谓的智能组件  
-（详见 [`src/utils/createContainer.js`][createContainer] 中对 `react-redux` 的 [`connect`][connect] 函数的封装）  
-本示例项目唯一在组件的定义中自行使用 `connect` 函数的是 [`Navbar`][Navbar] 组件（且用到了 ES7 的装饰器）
+## 项目特点
 
-有关木偶组件与智能组件更为精确的论述，推荐 Redux 作者 Dan 的[这篇文章][dan-post]，避免教条主义
-
-> 您可以根据业务需求改动目录结构。若目录使用频繁，建议配置 [路径别名](#alias)  
-> 默认的路径别名见上面目录结构注释中大写形式的常量  
-> **特别推荐：** 更新版本的 [Vue Demo 文档 · 目录结构](https://github.com/kenberkeley/vue-demo/blob/master/docs/zh-cn/Structure.md)
-
-### <a name="character">⊙ 特色</a>
-* 本示例项目秉承最佳实践，**高度洁癖**地实现代码分离/复用
-* 优化目录结构，更好的模块分离，更接近 Vue 的开发模式
-* Redux DevTools，可选 [Chrome 插件形式][chrome-extension]（默认） 或 内嵌页面的[组件形式][devtools-component]
+* Hot Reloading 当应用程序在开发模式下运行时(`npm start`)，默认启用热重载。 此功能是通过webpack的[Hot Module Replacement][Hot Module Replacement]功能实现的，代码更新可以在应用程序运行时注入到代码更新中，而不会完全重新加载
+* 优化目录结构，更好的模块分离，model文件集中管理了action、saga、reducer
+* Redux DevTools，可选[Redux DevTools Chrome Extension][Redux DevTools Chrome Extension]
 * [Redux Logger][redux-logger] 打印动作及前后状态变化
 * [why-did-you-update][why-did-u-update] 检测不必要的组件重渲染（默认关闭）
-* 引入服务层统一管理 XHR 请求（好处请参考 Vue Demo 中的 [引入服务层][service-intro]）
-* 引入 [路径别名](#alias) 实现优雅的加载模式
-* 引入 [React Hot Reload][hot-loader]，支持热替换
+* 引入服务层统一管理 fetch 请求此处参考[ant-design-pro][ant-design-pro]
 * 生产环境下的编译对代码进行[优化][react-optimize]
-* 迄今为止我见过的最完美的 starter kit
 
-> 有关 Redux DevTools 与 why-did-you-update 的启用与禁用，见下面的 [开发环境全局变量](#dev-global-vars) 配置
+## redux-saga
+本案例使用Redux-Saga处理异步请求，借鉴[ant-design-pro][ant-design-pro]对Redux-Saga的应用案例实现。
 
-***
+## 代码规范
+使用Eslint进行代码约束，详细配置`.eslintrc`、`.eslintignore`
 
-## <a name="development">&sect; 开发</a>
-### <a name="webpack-configure">⊙ Webpack 配置</a>
-> 由于已经拥有相对成熟的 Webpack 配置，因此在一定程度上您可以不求甚解，但了解其配置会更能把握整体开发  
+## mock
+本案例使用[mockjs][mockjs]模拟数据，目前只是简单应用，准备借鉴[roadhog](https://github.com/sorrycc/roadhog)配合[roadhog-api-doc](https://github.com/nikogu/roadhog-api-doc)实现真是场景的应用
 
-* 前端开发服务器为 `localhost:9090`，可在 `build/webpack.dev.conf.js` 中找到
-> 后端 RESTful API 基地址写在了 `src/services/xhr/config.js` 中，请根据实际自行修改
+## 测试
+待研究
 
-* 框架 / 类库 须分离打包以加快开发时的编译速度并有利于缓存，详见 `build/webpack.base.conf.js` 中的 `vendor`
-> 实际上该步骤可通过读取 `package.json` 的 `dependencies` 字段实现自动化，但其灵活度不够高，必要性也不大  
-> P.S. 安装包时勿忘 `--save / --save-dev` 以添加依赖记录
+## 开发
+使用快速编译的 `hot reloding`
+```bash
+$ npm start 
+```
 
-* <a name="alias">**路径别名**</a> 的定义位于 `build/webpack.base.conf.js`，好处就是**引入与重构都很方便**
-> 例如，在某组件中，引入 `userService` 需要 `import userService from '../../../services/userService'`  
-> 但有了路径别名后，只需要 `import userService from 'SERVICE/userService'`  
-> 相比于 AngularJS 中的依赖注入，这种方式依赖于构建工具，显得更为简单  
-> 
-> 您可能会说，Webpack 只需要设定了 `root`属性为 `src/`  
-> 就可以 `import userService from 'services/userService'`  
-> 但在这里其实是会引起歧义的（不过这属于强迫症的范畴。。。）  
-> 例如，`import createBrowserHistory from 'history/lib/createBrowserHistory'`  
-> 您可能会觉得这是 `src/history/lib/createBrowserHistory.js`  
-> 但实际上 [history][history] 是一个 npm package  
-> 同样地，您又怎么知道 `services` 不是一个 npm package？  
-> 而且重构之后，文件夹的变动会导致相对路径的变化，`services/` 目录未必仍在 `src/` 下    
-> 因此，路径别名相当有必要。其**常量**的形式，让人一看就知道不是一个 npm package
+## 部署
+使用`npm run build`生成的 `./ dist`文件夹来部署。
+```bash
+$ npm run build 
+```
+使用像nginx这样的网络服务器来提供应用程序。 确保将传入的路由请求引导至根目录'./dist/ index.html'文件，以便客户端应用程序将被加载, react路由会通过映射按需加载其余的文件。 如果你不确定如何做到这一点，你可能会发现[本文档][configuring-your-server]很有帮助。
 
-* 开发环境<a name="dev-global-vars">**全局变量**</a>，由 `webpack.DefinePlugin` 提供（详见 `build/webpack.base.conf.js`）
-> 默认有 `__DEV__` / `__PROD__` / `__COMPONENT_DEVTOOLS__` / `__WHY_DID_YOU_UPDATE__` 四个全局变量  
-> 若要继续添加，则还需要在 `.eslintrc` 中 `globals` 同步写入
-> 
-> 在此需要提醒，在 `package.json` 中设置 `NODE_ENV` 要注意末尾空格的[问题](http://stackoverflow.com/questions/11104028/#38948727)  
-> 最好就是使用前 `trim` 一下：`process.env.NODE_ENV.trim()`
-> 
-> 拓展阅读：[解读 UglifyJS](http://rapheal.sinaapp.com/tag/uglifyjs/)  
-> 看看生产环境下编译 `if (__PROD__) { ... }` => `if (true) { ... }` 后 [UglifyJS](http://rapheal.sinaapp.com/2014/05/22/uglifyjs-squeeze/) 会如何处理
+## 服务器端渲染
+服务器端实践，正在折腾[server-render][server-render]
 
-
-### <a name="standard">⊙ 规范</a>
-> 本示例项目的代码极尽详细地添加了注释，其中不乏最佳实践提示
-
-为了减少代码量，我省去了 [Prop 验证][proptypes]，建议您在往后的开发中使用
-
-### <a name="performance">⊙ 性能</a>
-大概可参阅如下文章：
-
+## 性能优化
+* [reselect](https://github.com/reactjs/reselect)为输入设置了缓存，只有当输入没有改变时，程序就会命中缓存
 * React 文档 · [Advanced Performance](https://facebook.github.io/react/docs/advanced-performance.html)
 * 反鸡汤 · [Should I use shouldComponentUpdate](http://jamesknelson.com/should-i-use-shouldcomponentupdate/)（[译文](http://www.infoq.com/cn/news/2016/07/react-shouldComponentUpdate)）
 * 淘宝 FED · [高性能 React 组件](http://taobaofed.org/blog/2016/08/12/optimized-react-components/)
 * 腾讯 Dev Club · [React 移动 Web 极致优化](http://dev.qq.com/topic/579083d1c9da73584b02587d)
 
-***
+## 参考
 
-## <a name="testing">&sect; 测试</a>
-> 请自行选择测试工具
+* [redux](https://github.com/reactjs/redux) 最好是能看书，强烈推荐`《深入浅出React和Redux》`
+* [ant-design-pro](https://github.com/ant-design/ant-design-pro/) 借鉴其对redux-saga异步调用的实践运用和fetch封装
+* [redux-saga](https://github.com/redux-saga/redux-saga) 基于Generator的异步请求处理方案
+* [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) github上start比较多的react开发脚手架
+* [kenberkeley](https://github.com/kenberkeley/react-demo.git) 好理解版本的react-redux-starter-kit
 
-***
-
-## <a name="deployment">&sect; 部署</a>
-在 `react-demo` 的命令窗口下，敲下 `npm run build`，将会在项目根目录下生成 `dist/`  
-> 您可以使用命令行静态资源服务器 [serve](https://github.com/tj/serve) ( `npm i serve -g` )，敲下 `serve dist/ -p [端口]` 来快速查看 build 后的项目  
-> 还可以 `cd dist` 后，`python -m SimpleHTTPServer [端口]` 或 `php -S localhost:[端口]` 快速便捷地实现静态资源服务器
->
-> 关于生产环境下的部署与优化，已超出本文档的论述范围，请自行查阅相关资料  
-
-***
-
-## <a name="reference">&sect; 参考</a>
-* [Vue Demo][vue-demo]
-* [davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
-* [探讨 React 项目目录结构](http://marmelab.com/blog/2015/12/17/react-directory-structure.html)
-
-[vue-cli]: https://github.com/vuejs/vue-cli
-[vue-cli-template]: http://vuejs-templates.github.io/webpack/structure
-[vue-demo]: https://github.com/kenberkeley/vue-demo
-[react-doc]: http://reactjs.cn/react/docs/getting-started-zh-CN.html
-[redux-doc]: http://camsong.github.io/redux-in-chinese/index.html
-[simple-tutorial]: https://github.com/kenberkeley/redux-simple-tutorial
-[react-router-doc]: http://react-guide.github.io/react-router-cn/
-[babel-repl]: http://babeljs.io/repl/
-[how-to-start]: https://github.com/kenberkeley/react-demo/issues/1
-[service-intro]: https://github.com/kenberkeley/vue-demo#service-layer
-[alias-intro]: https://github.com/kenberkeley/vue-demo#alias
-[createContainer]: https://github.com/kenberkeley/react-demo/blob/master/src/utils/createContainer.js
-[Navbar]: https://github.com/kenberkeley/react-demo/blob/master/src/components/Navbar/index.js
-[connect]: https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
-[dan-post]: https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
-[chrome-extension]: https://github.com/zalmoxisus/redux-devtools-extension
-[devtools-component]: https://github.com/gaearon/redux-devtools
+[mockjs]: http://mockjs.com
+[ant-design-pro]: https://github.com/ant-design/ant-design-pro/tree/master/src/models
+[server-render]: https://github.com/redux-saga/redux-saga/tree/master/examples/real-world
+[configuring-your-server]: https://github.com/reactjs/react-router/blob/master/docs/guides/Histories.md#configuring-your-server
+[Hot Module Replacement]: https://webpack.github.io/docs/hot-module-replacement.html
+[ant-design-pro]: https://github.com/ant-design/ant-design-pro/blob/master/src/utils/request.js
+[Redux DevTools Chrome Extension]:https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
 [redux-logger]: https://github.com/evgenyrodionov/redux-logger
 [why-did-u-update]: https://github.com/garbles/why-did-you-update
-[hot-loader]: https://github.com/gaearon/react-hot-loader
 [react-optimize]: https://github.com/thejameskyle/babel-react-optimize
-[history]: https://github.com/ReactTraining/history
-[proptypes]: https://facebook.github.io/react/docs/reusable-components-zh-CN.html#prop-验证
