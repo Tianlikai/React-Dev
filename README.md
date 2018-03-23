@@ -30,7 +30,7 @@
 
 ```bash
 $ git clone 
-https://github.com/Tianlikai/React-Dev.git <my-project-name>
+https://github.com/Tianlikai/React-Dev.git 
 $ cd <my-project-name>
 ```
 
