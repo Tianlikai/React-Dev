@@ -92,7 +92,7 @@ $ npm start  # Start the development server (or `yarn start`)
 │   │   ├── login            # login页面
 │   │   └── main             # main页面
 │   ├── app.js               # 项目入口
-│   └── index.html               # Main HTML page container for app
+│   └── index.html           # Main HTML page container for app
 └── static                   # 静态文件
 ```
 
