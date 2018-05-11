@@ -1,5 +1,5 @@
 {
-  "name": "React-Dev",
+  "name": "react-dev",
   "description": "A starter boilerplate for a universal webapp using express, react, react-router, redux , redux-saga, webpack, and fetch",
   "author": "Jason Tian <1024998526@qq.com>",
   "version": "0.1.0",
